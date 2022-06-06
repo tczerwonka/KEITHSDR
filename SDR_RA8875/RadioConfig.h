@@ -16,6 +16,24 @@
 // Your connected hardware is the primary reason to change these.
 // Compiling in code that talks to an I2C device for example will hang if the device is not present.
 
+/*******************************  !!!!!!! IMPORTANT CONFIGURATION NOTE !!!!!!!!!! ****************************************
+
+                        Teensy Configuration Requirement - Please READ!
+
+To compile sucessfully you must configure the Teensy 4.0 or 4.1 USB mode.
+
+For this build it must be set to SERIAL+MIDI+AUDIO.   
+
+The previous builds were Dual Serial. No changing this mode wil result in a complie time error about AudioInputUSB not found
+
+There is only 1 USB serial port active now so debug is globally shut off with '#define DEBUG' to allow the 
+OmniRig V1 RS-HFIQ compatible CAT control from an external PC.
+
+
+******************************  !!!!!!! ********************************** !!!!!! *****************************************/
+
+
+
 #define BANNER "Teensy 4 SDR"  // Custom Startup Screen Text
 #define CALLSIGN  "WO9U"   // Personalized Startup Screen Text
 
@@ -23,6 +41,11 @@
                             // When commented out it will default to the RA8876 controller and FT5206 touch controller
                             // DEPENDS on correct display controller type conencted via 4-wire SPI bus.
                             // UN-comment this line to use RA8876  ******** AND in the Spectrum_RA887x.h **********
+                            // For the RA8875 (only) be sure to edit the file
+                            //   C:\Program Files (x86)\Arduino\hardware\teensy\avr\libraries\RA8875\_settings\RA8875UserSettings.h
+                            //   to enable touch by uncommenting this config item
+                            //   #define USE_FT5206_TOUCH//capacitive touch screen
+            
 
 //#define OCXO_10MHZ        // Uncomment this line to use a different library that supports External CLKIN for si5351C version PLL boards.
                             // DEPENDS on si5351C version PLL board.  Otherwise uses the standard issue Si5351A PLL
@@ -137,8 +160,6 @@
 #define FFT_2048
 #define FFT_1024
 
-//#define USE_MIDI  	// Experimental dev work to use Teensy SDR controls to send out MIDI events over USB
-
 //-------------------------W7PUA Auto I2S phase correction-----------------
 //
 // Auto I2S alignment error correction (aka Twin Peaks problem)
@@ -195,6 +216,7 @@
     //#define USE_FREQ_SHIFTER // Experimental to shift the FFT spectrum up away from DC
     //#define USE_FFT_LO_MIXER    // Experimental to shift the FFT spectrum up away from DC
     //#define BETATEST  // audio memory external buffer test using FFT4096 
+    //#define USE_MIDI  	// Experimental dev work to use Teensy SDR controls to send out MIDI events over USB
     
 #endif  // K7MDL_BUILD
 
