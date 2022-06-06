@@ -17,7 +17,7 @@
 // Compiling in code that talks to an I2C device for example will hang if the device is not present.
 
 #define BANNER "Teensy 4 SDR"  // Custom Startup Screen Text
-#define CALLSIGN  "K7MDL"   // Personalized Startup Screen Text
+#define CALLSIGN  "WO9U"   // Personalized Startup Screen Text
 
 #define USE_RA8875          // Turns on support for RA8875 LCD TOcuhscreen Display with FT5204 Touch controller
                             // When commented out it will default to the RA8876 controller and FT5206 touch controller
@@ -278,7 +278,7 @@
     #include <NativeEthernetUdp.h>
     
     // Choose or create your desired time zone offset or use 0 for UTC.
-    #define MYTZ -8
+    #define MYTZ -5
     // here are some example values
     //  1 Central European Time
     //  0 UTC
